@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="topnav">
-            <div class="topnav-right">
+       <nav class="navbar">
+            <div class="Blog">Top bar</div>
+            <div class="navbar-menu">
+                <div class="navbar-link">
                 <a href="#">Account</a>
                 <a href="#">Settings</a>
+            </div>
             </div>
         </div>
     </header>

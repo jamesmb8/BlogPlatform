@@ -1,8 +1,9 @@
 <?php
 
 function make_connection()
-{
 
+{
+$db = new SQLite3('C:/Applications/XAMPP/xamppfiles/htdocs/newprojsoftware/data/Databasemain.db');
 $servername = "localhost";
 $username = "root";
 $password = "";

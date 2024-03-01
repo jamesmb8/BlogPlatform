@@ -28,6 +28,10 @@
                 <input type="text" id="last_name" name="last_name" required>
             </div>
              <div class="form-group">
+                <label for="last_name">Username:</label>
+                <input type="text" id="user_name" name="user_name" required>
+            </div>
+             <div class="form-group">
                 <label for="phone">Phone number:</label>
                 <input type="text" id="phone" name="phone" required>
             </div>
@@ -43,7 +47,7 @@
                 <label for="password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
-            <button type="submit" name="submit">Sign Up</button>
+            <button href="blogpage.php" type="submit" name="submit">Sign Up</button>
             <div class="login-link">
 
             
@@ -52,11 +56,11 @@
 
             if(isset($_POST["submit"]))
             {
-                if(isset($_POST["first_name"]) and isset($_POST["last_name"]) and isset($_POST["email"])and isset ( $_POST["phone"]) and isset($_POST["password"]))
+                if(isset($_POST["first_name"]) and isset($_POST["last_name"]) and isset($_POST["user_name"]) and isset($_POST["email"])and isset ( $_POST["phone"]) and isset($_POST["password"]))
                 {
                     include_once("phpfunctions/userquery.php");
-                    createuser($_POST["first_name"] and $_POST["last_name"] and $_POST["password"] and $_POST["email"] and $_POST["phone"]);
-                
+                    createuser($_POST["first_name"] and $_POST["last_name"] and $_POST["user_name"] and $_POST["password"] and $_POST["email"] and $_POST["phone"]);
+                    
                 }
 
             }
