@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>Create Post</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 

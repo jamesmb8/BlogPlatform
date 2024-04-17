@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3498db; /* Blue color for the navbar */
+    padding: 10px 20px; /* Adjust padding as needed */
+    color: #fff; /* Text color for navbar items */
+}
+
+.logo img {
+    height: 40px; /* Adjust height of the logo image */
+    width: auto;
+}
+
+.user img {
+    height: 40px; /* Adjust height of the user image */
+    width: auto;
+    border-radius: 50%; /* Makes the user image round */
+}
