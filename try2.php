@@ -26,7 +26,7 @@ $phone = $_SESSION['phone'];
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocialBook - Easy Tutorials YouTube Channel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
    
 </head>
 
@@ -47,9 +47,34 @@ $phone = $_SESSION['phone'];
         <div class="main-content">
             <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
            
-            
-</div>
-<?php include 'makepostbtn.php'; ?>
+            <?php
+            $query = "SELECT * FROM Post WHERE member_ID = :user_id ORDER BY post_id DESC";
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
+            $result = $stmt->execute();
+
+            if ($result) {
+                // Display user information
+                echo "Welcome, $username!<br><br>";
+
+                // Display user's posts
+                echo "<h3>Your Posts:</h3>";
+                while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                    $post_id = $row['post_id'];
+                    $post_text = $row['post_text'];
+                    echo "<p>Post ID: $post_id</p>";
+                    echo "<p>$post_text</p>";
+                    echo "<hr>";
+                }
+            } else {
+                echo "Error retrieving posts.";
+            }
+
+
+
+
+
+ include 'makepostbtn.php'; ?>
 
      
 

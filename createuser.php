@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     <main role="main" class="pb-3">
         <h2>Create New User</h2>
         <div class="row">
-            <div class="col-6">
+            <div class="container>
                 <form method="post">
                     <div class="form-group col-md-6">
                         <label class="control-label labelFont">First Name</label>

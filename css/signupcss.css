@@ -1,0 +1,119 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#00C6FF, #0078FF);
+  margin: 0;
+  padding: 0;
+  color: #fff; /* Text color */
+}
+
+.container {
+  max-width: 400px;
+  margin: 100px auto;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* White background color with transparency */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form {
+  text-align: center;
+}
+
+.signup-form h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333; /* Label text color */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="confirm_password"],
+input[type="username"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff; /* Button background color */
+  color: #007bff; /* Button text color */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #f0f0f0; /* Button hover background color */
+}
+
+header {
+  background-color: #00C6FF;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #f0f0f0;
+}
+
+.login-btn {
+  background-color: #fff;
+  color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.login-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
