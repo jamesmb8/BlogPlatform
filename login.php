@@ -19,7 +19,7 @@
 
     </header>
     <div class="container">
-        <form class="login-form" action="#" method="POST">
+        <form class="login-form" action="login.php" method="POST">
             <h2>Login</h2>
             <div class="form-group">
                 <label for="email">Username:</label>

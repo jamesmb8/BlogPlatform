@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Authentication successful
         echo "Login successful! Welcome, {$user['member_username']}!";
         // Redirect to dashboard or desired page
-        // header('Location: dashboard.php');
+        ('Location: dashboard.php');
         exit;
     } else {
         // Authentication failed

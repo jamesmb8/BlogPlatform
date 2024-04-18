@@ -15,14 +15,14 @@
         <div class="left-sidebar">
             <div class="imp-links">
                 
-                <a href="#"><img src="images/friends.png"> Friends</a>
-                
+                <a href="account.php"><img src="images/User-image.png"> Account</a>
+                 <a href="friends.php"><img src="images/friends.png"> Friends</a>
             </div>
             
         </div>
         <!----------------- middle content--------- -->
         <div class="main-content">
-            
+            <h2>Posts</h2>
 </div>
 <?php include 'makepostbtn.php'; ?>
 

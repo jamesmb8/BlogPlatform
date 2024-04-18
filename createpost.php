@@ -15,13 +15,14 @@
           <header>Create Post</header>
           <form action="#">
             <div class="content">
-              <img src="icons/logo.png" alt="logo">
+              
               <div class="details">
                 <p>User</p>
                 
               </div>
             </div>
-            <textarea placeholder="What's on your mind, CodingNepal?" spellcheck="false" required></textarea>
+            <textarea placeholder="What's on your mind, ?" spellcheck="false" required></textarea>
+            <button type="button">Post!</button>
            <button
   </body>
 </html>
