@@ -1,3 +1,22 @@
+<?php
+// Start session
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+    // User is not logged in, redirect to login page
+    header('Location: login.html');
+    exit;
+}
+
+// If logged in, you can access user information from session variables
+$username = $_SESSION['username'];
+
+// Display dashboard content here (authenticated user)
+echo "Welcome, $username! This is your dashboard (try2.php).";
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +30,7 @@
 <body>
 
         <?php include 'navbar.php'; ?>
+        <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
     <div class="container">
         <div class="left-sidebar">
             <div class="imp-links">

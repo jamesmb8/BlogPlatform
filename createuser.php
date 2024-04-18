@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 
     if ($allFields == "yes") {
         $createUser = createUser();
-        header('Location: userCreationSummary.php?createUser=' . $createUser);
+        header('Location: try2.php?createUser=' . $createUser);
     }
 }
 ?>

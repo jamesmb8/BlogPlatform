@@ -1,40 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// Start session
+session_start();
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+// Establish SQLite connection
+$db = new SQLite3('StudentModule.db');
 
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar-title">Blog</div>
-            <div class="navbar-menu">
-                <a href="index.php" class="navbar-link">Sign up</a>
-            </div>
-        </nav>
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve username and password from the form
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    </header>
-    <div class="container">
-        <form class="login-form" action="login.php" method="POST">
-            <h2>Login</h2>
-            <div class="form-group">
-                <label for="email">Username:</label>
-                <input type="username" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button href="blogpage.php" type="submit">Login</button>
-            <div class="signup-link">
+    // Prepare SQL statement with placeholders for username and password
+    $stmt = $db->prepare('SELECT * FROM Users WHERE member_username = :username AND member_password = :password');
+    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+    $stmt->bindValue(':password', $password, SQLITE3_TEXT); // Note: Password is not hashed
+    $result = $stmt->execute();
 
-            </div>
-        </form>
-    </div>
-</body>
+    // Check if user exists with the provided credentials
+    $user = $result->fetchArray(SQLITE3_ASSOC);
+    if ($user) {
+        // Authentication successful
+        // Store user information in session variables
+        $_SESSION['username'] = $username;
 
-</html>
+        // Redirect to dashboard or desired page
+        header('Location: dashboard.php');
+        exit;
+    } else {
+        // Authentication failed
+        echo "Invalid username or password. Please try again.";
+    }
+} else {
+    // Handle non-POST requests (if any)
+    echo "Error: This page expects POST requests only.";
+}
+
+?>
