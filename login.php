@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $username;
 
         // Redirect to dashboard or desired page
-        header('Location: dashboard.php');
+        header('Location: try2.php');
         exit;
     } else {
         // Authentication failed
