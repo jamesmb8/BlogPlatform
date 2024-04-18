@@ -1,29 +1,49 @@
 <?php
 
-function createPost()
-{
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
-    //This 4 are variable assignments
-    $created = false;//this variable is used to indicate the creation is successfull or not
-    $db = new SQLite3('StudentModule.db'); // db connection - get your db file here. Its strongly advised to place your db file outside htdocs. 
-    $sql = 'INSERT INTO Post( member_ID, post_text, ) VALUES (:ID, :postt)';
-    $stmt = $db->prepare($sql); //prepare the sql statement
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // User is not logged in, redirect to login page
+    header('Location: login.html');
+    exit;
+}
 
-    //give the values for the parameters
-    //we use SQLITE3_TEXT for text/varchar. You can use SQLITE3_INTEGER or SQLITE3_REAL for numerical values
-    $stmt->bindParam(':ID', $_POST['ID'], SQLITE3_TEXT);
-    $stmt->bindParam(':postt', $_POST['postt'], SQLITE3_TEXT);
-   
+// Retrieve user ID from session
+$user_id = $_SESSION['user_id'];
 
-    //execute the sql statement
-    $stmt->execute();
+// Validate and sanitize post text
+if (isset($_POST['post_text'])) {
+    $post_text = $_POST['post_text'];
 
-    //the logic
-    if ($stmt) {
-        $created = true;
-        header("Location: try2.php");
-        exit();
+    // SQLite3 database connection
+    $dbFile = "StudentModule.db";
+    $db = new SQLite3($dbFile);
+
+    if (!$db) {
+        die("Failed to connect to SQLite database.");
     }
 
-    return $created;
+    // Prepare and execute INSERT query to save the post
+    $query = "INSERT INTO Post (member_ID, post_text) VALUES (:user_id, :post_text)";
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
+    $stmt->bindValue(':post_text', $post_text, SQLITE3_TEXT);
+
+    $result = $stmt->execute();
+
+    if ($result) {
+        // Post created successfully, redirect to try2.php
+        header('Location: try2.php');
+        exit;
+    } else {
+        echo "Error creating post.";
+    }
+
+    $db->close();
+} else {
+    echo "Post text not provided.";
 }
+?>

@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 }
 
 // If logged in, retrieve user information from session variables
-$user_id = $_SESSION['ID'];
+$user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
@@ -46,6 +46,7 @@ $phone = $_SESSION['phone'];
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
+           
             
 </div>
 <?php include 'makepostbtn.php'; ?>

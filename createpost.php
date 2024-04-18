@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 }
 
 // If logged in, retrieve user information from session variables
-$user_id = $_SESSION['ID'];
+$user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
@@ -44,7 +44,7 @@ $phone = $_SESSION['phone'];
               
             </div>
           </div>
-          <textarea placeholder="What's on your mind," <?php echo $_SESSION['first_name']; ?>? spellcheck="false" name="postt" required></textarea>
+          <textarea placeholder="What's on your mind," <?php echo $_SESSION['first_name']; ?> spellcheck="false" name="post_text" id="post_text"required></textarea>
          
           
           <button>Post</button>
@@ -53,20 +53,7 @@ $phone = $_SESSION['phone'];
     </div>
   </div>
 
-  <script>
-    const container = document.querySelector(".container"),
-      privacy = container.querySelector(".post .privacy"),
-      arrowBack = container.querySelector(".audience .arrow-back");
-
-    privacy.addEventListener("click", () => {
-      container.classList.add("active");
-    });
-
-    arrowBack.addEventListener("click", () => {
-      container.classList.remove("active");
-    });
-  </script>
-
+  
 </body>
 
 </html>
