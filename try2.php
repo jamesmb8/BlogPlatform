@@ -9,11 +9,14 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
     exit;
 }
 
-// If logged in, you can access user information from session variables
+// If logged in, retrieve user information from session variables
+$user_id = $_SESSION['ID'];
 $username = $_SESSION['username'];
+$first_name = $_SESSION['first_name'];
+$last_name = $_SESSION['last_name'];
+$email = $_SESSION['email'];
+$phone = $_SESSION['phone'];
 
-// Display dashboard content here (authenticated user)
-echo "Welcome, $username! This is your dashboard (try2.php).";
 ?>
 
 
@@ -24,13 +27,13 @@ echo "Welcome, $username! This is your dashboard (try2.php).";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocialBook - Easy Tutorials YouTube Channel</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+   
 </head>
 
 <body>
 
         <?php include 'navbar.php'; ?>
-        <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+       
     <div class="container">
         <div class="left-sidebar">
             <div class="imp-links">
@@ -42,7 +45,8 @@ echo "Welcome, $username! This is your dashboard (try2.php).";
         </div>
         <!----------------- middle content--------- -->
         <div class="main-content">
-            <h2>Posts</h2>
+            <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
+            
 </div>
 <?php include 'makepostbtn.php'; ?>
 

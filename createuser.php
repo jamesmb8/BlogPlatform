@@ -29,10 +29,7 @@ if (isset($_POST['submit'])) {
         $allFields = "no";
     }
 
-    if ($allFields == "yes") {
-        $createUser = createUser();
-        header('Location: try2.php?createUser=' . $createUser);
-    }
+    
 }
 ?>
 <div class="container bgColor">
@@ -95,6 +92,7 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
         </div>
+       
     </main>
 </div>
 <?php include("Footer.php"); ?>

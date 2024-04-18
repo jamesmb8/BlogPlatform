@@ -11,7 +11,7 @@
     <nav class="navbar">
         <div class="navbar-title">Blog</div>
         <div class="navbar-menu">
-            <a href="login.php" class="navbar-link">Login</a>
+            <a href="login.html" class="navbar-link">Login</a>
         </div>
     </nav>
 </header>

@@ -1,39 +1,44 @@
 <?php
-// Start session
 session_start();
 
-// Establish SQLite connection
-$db = new SQLite3('StudentModule.db');
+// SQLite3 database connection
+$dbFile = "StudentModule.db";
+$db = new SQLite3($dbFile);
 
-// Check if form is submitted
+if (!$db) {
+    die("Failed to connect to SQLite database.");
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve username and password from the form
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Prepare SQL statement with placeholders for username and password
-    $stmt = $db->prepare('SELECT * FROM Users WHERE member_username = :username AND member_password = :password');
+    // Query the database for the user
+    $query = "SELECT * FROM User WHERE member_username = :username AND member_password = :password";
+    $stmt = $db->prepare($query);
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
-    $stmt->bindValue(':password', $password, SQLITE3_TEXT); // Note: Password is not hashed
+    $stmt->bindValue(':password', $password, SQLITE3_TEXT);
     $result = $stmt->execute();
 
-    // Check if user exists with the provided credentials
+    // Check if the user exists and credentials are correct
     $user = $result->fetchArray(SQLITE3_ASSOC);
     if ($user) {
-        // Authentication successful
-        // Store user information in session variables
-        $_SESSION['username'] = $username;
+        // Start a session and store user information
+        $_SESSION['user_id'] = $user['ID'];
+        $_SESSION['username'] = $user['member_username'];
+        $_SESSION['first_name'] = $user['member_firstname'];
+        $_SESSION['last_name'] = $user['member_lastname'];
+        $_SESSION['email'] = $user['member_email'];
+        $_SESSION['phone'] = $user['member_phone'];
+        $_SESSION['password'] = $user['member_password'];
 
-        // Redirect to dashboard or desired page
-        header('Location: try2.php');
-        exit;
+        // Redirect to try2.php upon successful login
+        header("Location: try2.php");
+        exit();
     } else {
-        // Authentication failed
+        // Display error message if credentials are incorrect
         echo "Invalid username or password. Please try again.";
     }
-} else {
-    // Handle non-POST requests (if any)
-    echo "Error: This page expects POST requests only.";
 }
-
 ?>

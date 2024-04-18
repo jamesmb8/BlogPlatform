@@ -1,3 +1,26 @@
+
+<?php
+// Start session
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+    // User is not logged in, redirect to login page
+    header('Location: login.html');
+    exit;
+}
+
+// If logged in, retrieve user information from session variables
+$user_id = $_SESSION['ID'];
+$username = $_SESSION['username'];
+$first_name = $_SESSION['first_name'];
+$last_name = $_SESSION['last_name'];
+$email = $_SESSION['email'];
+$phone = $_SESSION['phone'];
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -23,10 +46,12 @@
                     <div>
                        
                         <ul>
-                <li>First Name:</li>
-                 <li>Last name:</li>
-                 <li>Username:</li>
-                 <li>Email:</li>
+                <li>First Name: <?php echo $_SESSION['first_name']; ?></li>
+                 <li>Last name: <?php echo $_SESSION['last_name']; ?></li>
+                 <li>Username: <?php echo $_SESSION['username']; ?></li>
+                 <li>E-Mail: <?php echo $_SESSION['email']; ?></li>
+                  <li>Phone: <?php echo $_SESSION['phone']; ?></li>
+                   <li>Password: <?php echo $_SESSION['password']; ?></li>
                
 </ul>
                        

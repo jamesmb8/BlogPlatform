@@ -1,7 +1,6 @@
 <?php
-//This file name is insertUser.php
-//This is the function name
-function createUser()
+
+function createPost()
 {
 
     //This 4 are variable assignments
@@ -22,6 +21,8 @@ function createUser()
     //the logic
     if ($stmt) {
         $created = true;
+        header("Location: try2.php");
+        exit();
     }
 
     return $created;
