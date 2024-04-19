@@ -84,11 +84,12 @@ $userPosts = getUserPosts($userID, $dbPath);
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Your posts</h2>
-</div>
+
 
 <?php
 // Display user posts
 if (!empty($userPosts)) {
+    echo '<div class="post-container">';
     foreach ($userPosts as $post) {
         echo "<div class='post'>";
         echo "<p>Posted by: " . $post['username'] . "</p>";
@@ -102,7 +103,7 @@ if (!empty($userPosts)) {
 ?>
 
 
-
+</div>
 
     
 

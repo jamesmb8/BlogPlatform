@@ -1,47 +1,56 @@
 <?php
 session_start();
 
-// Validate user session
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
+    // Redirect to login page if user is not logged in
+    header('Location: login.html');
     exit;
 }
 
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve user ID and post text from form data
-    $userID = $_SESSION['user_id'];
-    $postText = $_POST['post_text'];
+// Get user ID from session
+$member_ID = $_SESSION['user_id'];
 
-    // Include database connection
+// Validate and sanitize post_text
+if (isset($_POST['post_text'])) {
+    $post_text = htmlspecialchars($_POST['post_text']);
+
+    // Get current date and time in SQLite datetime format
+    $currentDateTime = date("Y-m-d H:i:s"); // Example: 2024-04-18 15:30:00
+
+    // Database connection
     $dbPath = "../StudentModule.db"; // Path to SQLite database file
     $db = new SQLite3($dbPath);
 
-    // Check if database connection is successful
     if (!$db) {
-        die("Failed to connect to database: " . $db->lastErrorMsg());
+        die("Failed to connect to SQLite database.");
     }
 
-    // Get current date and time in ISO 8601 format
-    $currentDateTime = date('Y-m-d H:i:s');
+    // Prepare SQL statement to insert post
+    $sql = "INSERT INTO Post (post_text, post_date, member_ID) 
+            VALUES (:post_text, :post_date, :member_ID)";
 
-    // Insert post into database with current timestamp
-    $insertQuery = "INSERT INTO Post (member_ID, post_text, post_date) VALUES (:userID, :postText, :currentDateTime)";
-    $stmt = $db->prepare($insertQuery);
-    $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
-    $stmt->bindValue(':postText', $postText, SQLITE3_TEXT);
-    $stmt->bindValue(':currentDateTime', $currentDateTime, SQLITE3_TEXT);
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':post_text', $post_text, SQLITE3_TEXT);
+    $stmt->bindValue(':post_date', $currentDateTime, SQLITE3_TEXT); // Use text type for SQLite datetime
+    $stmt->bindValue(':member_ID', $member_ID, SQLITE3_INTEGER);
 
+    // Execute SQL statement
     $result = $stmt->execute();
 
     if ($result) {
-        // Post created successfully, redirect to try2.php
-        header("Location: ../try2.php");
+        // Post inserted successfully
+        header('Location: ../try2.php'); // Redirect to try2.php after successful post
         exit;
     } else {
-        // Failed to insert post, display error message
-        header("Location: ../createpost.php?error=Failed%20to%20create%20post");
-        exit;
+        // Error inserting post
+        echo "Failed to create post.";
     }
+
+    // Close database connection
+    $db->close();
+} else {
+    // Redirect or handle invalid form submission
+    echo "Invalid form submission.";
 }
 ?>

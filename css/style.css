@@ -390,11 +390,43 @@ h2 {
 }
 
 
-.post {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-}
+.post-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Vertical gap between posts */
+        }
+
+        /* Style for each post */
+        .post {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .post-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .post-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .post-content {
+            font-size: 16px;
+            color: #333;
+        }
 .btm-navbar {
   background-color: #333;
   overflow: hidden;

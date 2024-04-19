@@ -52,9 +52,7 @@ $phone = $_SESSION['phone'];
 </div>
 </div>
 
-<div id="posts">
-        <?php include "phpfunctions/getposts.php"; ?>
-    </div>
+
 
 
 
