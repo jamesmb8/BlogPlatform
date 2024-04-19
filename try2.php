@@ -51,21 +51,20 @@ $phone = $_SESSION['phone'];
           
 </div>
 </div>
-<div id="user_posts">
-    <?php include "phpfunctions/getposts.php"; ?>
-</div>
+
+<div id="posts">
+        <?php include "phpfunctions/getposts.php"; ?>
+    </div>
 
 
 
 
 
-
-
- <?php include 'makepostbtn.php'; ?>
+<?php include"makepostbtn.php" ?>
 
      
 
-    <script src="script.js"></script>
+
 </body>
 
 </html>

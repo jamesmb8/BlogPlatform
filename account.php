@@ -1,25 +1,32 @@
-
 <?php
-// Start session
 session_start();
 
+// Include the getUserPosts function
+include "phpfunctions/getusersposts.php";
+
 // Check if user is logged in
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-    // User is not logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page if user is not logged in
     header('Location: login.html');
     exit;
 }
 
-// If logged in, retrieve user information from session variables
-$user_id = $_SESSION['ID'];
-$username = $_SESSION['username'];
+// Retrieve user ID from session
+$userID = $_SESSION['user_id'];
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
+// Path to your SQLite database file
+$dbPath = "StudentModule.db";
 
+// Call getUserPosts to retrieve user posts
+$userPosts = getUserPosts($userID, $dbPath);
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -79,6 +86,20 @@ $phone = $_SESSION['phone'];
             <h2>Your posts</h2>
 </div>
 
+<?php
+// Display user posts
+if (!empty($userPosts)) {
+    foreach ($userPosts as $post) {
+        echo "<div class='post'>";
+        echo "<p>Posted by: " . $post['username'] . "</p>";
+        echo "<p>Posted on: " . date("F j, Y, g:i a", strtotime($post['post_date'])) . "</p>";
+        echo "<p>" . nl2br(htmlspecialchars($post['post_text'])) . "</p>";
+        echo "</div>";
+    }
+} else {
+    echo "<p>No posts found.</p>";
+}
+?>
 
 
 

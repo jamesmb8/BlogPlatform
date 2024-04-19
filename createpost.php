@@ -37,7 +37,7 @@ $phone = $_SESSION['phone'];
     <div class="wrapper">
       <section class="post">
         <header>Create Post</header>
-        <form action="createpostdb.php" method="POST">
+        <form action="phpfunctions/createpostdb.php" method="POST">
           <div class="content">
           
             <div class="details">
