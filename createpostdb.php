@@ -1,49 +1,52 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Start session (if not already started)
 session_start();
 
-// Check if user is logged in
+// Check if user is logged in (validate session)
 if (!isset($_SESSION['user_id'])) {
-    // User is not logged in, redirect to login page
-    header('Location: login.html');
+    // Redirect to login page if user is not logged in
+    header("Location: login.html");
     exit;
 }
 
-// Retrieve user ID from session
-$user_id = $_SESSION['user_id'];
+// Validate form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data using $_POST
+    $postText = $_POST['post_text'];
+    $userID = $_SESSION['user_id']; // Retrieve user ID from session
 
-// Validate and sanitize post text
-if (isset($_POST['post_text'])) {
-    $post_text = $_POST['post_text'];
-
-    // SQLite3 database connection
-    $dbFile = "StudentModule.db";
+    // Database connection using SQLite3
+    $dbFile = "StudentModule.db"; // Update with your database file path
     $db = new SQLite3($dbFile);
 
     if (!$db) {
         die("Failed to connect to SQLite database.");
     }
 
-    // Prepare and execute INSERT query to save the post
-    $query = "INSERT INTO Post (member_ID, post_text) VALUES (:user_id, :post_text)";
+    // Prepare INSERT statement to add new post to Post table
+    $query = "INSERT INTO Post (post_text, member_ID) VALUES (:post_text, :userID)";
+
     $stmt = $db->prepare($query);
-    $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
-    $stmt->bindValue(':post_text', $post_text, SQLITE3_TEXT);
+    $stmt->bindValue(':post_text', $postText, SQLITE3_TEXT);
+    $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
 
     $result = $stmt->execute();
 
     if ($result) {
-        // Post created successfully, redirect to try2.php
-        header('Location: try2.php');
+        // Post insertion successful, redirect to try2.php or another page
+        header("Location: try2.php");
         exit;
     } else {
-        echo "Error creating post.";
+        // Redirect back to createpost.php with error message
+        header("Location: createpost.php?error=Failed to create post");
+        exit;
     }
 
+    // Close database connection
     $db->close();
 } else {
-    echo "Post text not provided.";
+    // Redirect back to createpost.php if accessed directly without POST request
+    header("Location: createpost.php");
+    exit;
 }
 ?>

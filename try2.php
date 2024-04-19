@@ -2,12 +2,14 @@
 // Start session
 session_start();
 
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
     // User is not logged in, redirect to login page
     header('Location: login.html');
     exit;
 }
+require_once"db_connect.php";
 
 // If logged in, retrieve user information from session variables
 $user_id = $_SESSION['user_id'];
@@ -46,8 +48,14 @@ $phone = $_SESSION['phone'];
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
-           
+          
 </div>
+<?php include "getposts.php"; ?>
+
+
+
+
+
 
 
  <?php include 'makepostbtn.php'; ?>

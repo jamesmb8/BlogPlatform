@@ -39,13 +39,20 @@ label {
   color: #333; /* Label text color */
 }
 
-input[type="firstname"],
+input[type="text"],
 input[type="lastname"],
 input[type="email"],
 input[type="password"],
 input[type="confirm_password"],
 input[type="username"],
 input[type="phone"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+input[type="text"]
+{
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;

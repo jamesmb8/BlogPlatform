@@ -1,12 +1,13 @@
+
 <?php
 // Start session
 session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-  // User is not logged in, redirect to login page
-  header('Location: login.html');
-  exit;
+    // User is not logged in, redirect to login page
+    header('Location: login.html');
+    exit;
 }
 
 // If logged in, retrieve user information from session variables
@@ -36,7 +37,7 @@ $phone = $_SESSION['phone'];
     <div class="wrapper">
       <section class="post">
         <header>Create Post</header>
-        <form action="createdpostdb.php" method="POST">
+        <form action="createpostdb.php" method="POST">
           <div class="content">
           
             <div class="details">
@@ -44,11 +45,12 @@ $phone = $_SESSION['phone'];
               
             </div>
           </div>
-          <textarea placeholder="What's on your mind," <?php echo $_SESSION['first_name']; ?> spellcheck="false" name="post_text" id="post_text"required></textarea>
+          <textarea placeholder="What's on your mind?"  spellcheck="false" name="post_text" id="post_text"required></textarea>
          
           
-          <button>Post</button>
+          <button type="submit">Post</button>
         </form>
+        
       
     </div>
   </div>
