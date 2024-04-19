@@ -35,19 +35,26 @@ if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $insertStmt->bindValue(':friendID', $friendID, SQLITE3_INTEGER);
     $insertResult = $insertStmt->execute();
 
-    // Close database connection
-    $db->close();
+    // Check if insertion was successful
+    if ($insertResult) {
+        // Close database connection
+        $db->close();
 
-    // Redirect back to try2.php after successfully adding a friend
-    header("Location: ../try2.php");
-    exit;
+        // JavaScript alert for successful addition
+        echo "<script>alert('User successfully added as a friend.'); window.location = '../try2.php';</script>";
+        exit;
+    } else {
+        // JavaScript alert for failed to add user
+        echo "<script>alert('Failed to add user as a friend. Please try again later.');</script>";
+    }
 } else {
-    // Close database connection
-    $db->close();
-
-    echo "User '$searchUsername' not found.";
-    // Optionally, redirect back to try2.php or display an error message
-    // header("Location: ../try2.php");
-    // exit;
+    // JavaScript alert for user not found
+    echo "<script>alert('User not found. Please enter a valid username.');</script>";
 }
+
+// Close database connection
+$db->close();
+
+// Redirect back to try2.php if any JavaScript alerts were displayed
+echo "<script>window.location = '../try2.php';</script>";
 ?>
