@@ -6,14 +6,14 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data using $_POST
     $username = $_POST['username'];
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
     $email = $_POST['email'];
     $password = $_POST['password']; // Note: In a real application, hash the password securely.
     $phone = $_POST['phone'];
 
     // Validate input (basic validation for demonstration purposes)
-    if (empty($username) || empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($phone)) {
+    if (empty($username) || empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($phone)) {
         // Redirect back to signup page with error message
         header("Location: signup.html?error=Please fill in all required fields");
         exit;
@@ -29,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare INSERT statement to add new user to User table
     $query = "INSERT INTO User (member_username, member_firstname, member_lastname, member_email, member_password, member_phone)
-              VALUES (:username, :first_name, :last_name, :email, :password, :phone)";
+              VALUES (:username, :firstname, :lastname, :email, :password, :phone)";
 
     $stmt = $db->prepare($query);
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
-    $stmt->bindValue(':first_name', $firstname, SQLITE3_TEXT);
-    $stmt->bindValue(':last_name', $lastname, SQLITE3_TEXT);
+    $stmt->bindValue(':firstname', $firstname, SQLITE3_TEXT);
+    $stmt->bindValue(':lastname', $lastname, SQLITE3_TEXT);
     $stmt->bindValue(':email', $email, SQLITE3_TEXT);
     $stmt->bindValue(':password', $password, SQLITE3_TEXT);
     $stmt->bindValue(':phone', $phone, SQLITE3_TEXT);
@@ -42,18 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->execute();
 
     if ($result) {
-        // Registration successful, store user info in session
-        $_SESSION['user_id'] = $user['ID'];
-        $_SESSION['username'] = $user['member_username'];
-        $_SESSION['first_name'] = $user['member_firstname'];
-        $_SESSION['last_name'] = $user['member_lastname'];
-        $_SESSION['email'] = $user['member_email'];
-        $_SESSION['phone'] = $user['member_phone'];
-        $_SESSION['password'] = $user['member_password'];
-
-
-        // Redirect to try2.php with user credentials in session
-        header("Location: try2.php");
+        // Registration successful, redirect to login page or dashboard
+        header("Location: try2.php"); 
         exit;
     } else {
         // Redirect back to signup page with error message
