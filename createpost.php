@@ -19,7 +19,7 @@ $phone = $_SESSION['phone'];
 
 ?>
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+
 <html lang="en" dir="ltr">
 
 <head>
@@ -27,7 +27,7 @@ $phone = $_SESSION['phone'];
   <title>Create Post</title>
   <link rel="stylesheet" href="css/createpost.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- FontAweome CDN Link for Icons -->
+
  
 </head>
 

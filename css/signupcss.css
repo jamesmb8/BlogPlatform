@@ -39,11 +39,13 @@ label {
   color: #333; /* Label text color */
 }
 
-input[type="text"],
+input[type="firstname"],
+input[type="lastname"],
 input[type="email"],
 input[type="password"],
 input[type="confirm_password"],
-input[type="username"] {
+input[type="username"],
+input[type="phone"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -116,4 +118,14 @@ header {
 .login-form h2 {
   margin-bottom: 20px;
   color: #333;
+}
+.signup-btn {
+  background-color: #fff;
+  color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
