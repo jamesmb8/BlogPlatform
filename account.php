@@ -69,7 +69,7 @@ $phone = $_SESSION['phone'];
             <div class="imp-links">
                  <a href="try2.php"><img src="images/User-image.png"> Home</a>
                  <a href="friends.php"><img src="images/friends.png"> Friends</a>
-                 <a href="logout.php"> Log Out</a>
+                 <a href="phpfunctions/logout.php"> Log Out</a>
                 
             </div>
             

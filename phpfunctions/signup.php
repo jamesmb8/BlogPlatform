@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Database connection using SQLite3
-    $dbFile = "StudentModule.db"; 
+    $dbFile = "../StudentModule.db"; 
     $db = new SQLite3($dbFile);
 
     if (!$db) {

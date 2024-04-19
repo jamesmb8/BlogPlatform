@@ -2,7 +2,7 @@
 session_start();
 
 // SQLite3 database connection
-$dbFile = "StudentModule.db";
+$dbFile = "../StudentModule.db";
 $db = new SQLite3($dbFile);
 
 if (!$db) {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['password'] = $user['member_password'];
 
         // Redirect to try2.php upon successful login
-        header("Location: try2.php");
+        header("Location: ../try2.php");
         exit();
     } else {
         // Display error message if credentials are incorrect

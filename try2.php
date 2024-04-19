@@ -50,7 +50,10 @@ $phone = $_SESSION['phone'];
             <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
           
 </div>
-<?php include "getposts.php"; ?>
+</div>
+<div id="user_posts">
+    <?php include "phpfunctions/getposts.php"; ?>
+</div>
 
 
 

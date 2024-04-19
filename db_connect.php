@@ -7,5 +7,3 @@ if (!$db) {
     die("Failed to connect to SQLite database.");
 }
 ?>
-
-

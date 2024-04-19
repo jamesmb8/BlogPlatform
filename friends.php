@@ -52,9 +52,10 @@ $email = $_SESSION['email'];
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Your Friends</h2>
-            <form id="friends_search"> 
-  <input type="search" id="query" name="q" placeholder="Search...">
-  <button>Search</button>
+            <form action="phpfunctions/searchresults.php" method="GET">
+    <label for="search_username">Search for username:</label>
+    <input type="text" id="search_username" name="search_username" required>
+    <button type="submit">Search</button>
 </form>
 </div>
 
