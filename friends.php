@@ -55,12 +55,10 @@ require_once"phpfunctions/getfriends.php";
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Search for friends</h2>
-            <div id="tryandsearch"
             <form action="phpfunctions/searchresults.php" method="GET" id="searchform">
     <label for="search_username">Search for username:</label>
     <input type="text" id="search_username" name="search_username" required>
     <button type="submit">Add Friend</button>
-</div>
 </form>
 
   <h2>Your friends</h2>
