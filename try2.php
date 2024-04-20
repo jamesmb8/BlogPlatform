@@ -11,6 +11,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 }
 require_once"db_connect.php";
 
+
+
 // If logged in, retrieve user information from session variables
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
@@ -49,13 +51,40 @@ $phone = $_SESSION['phone'];
         <div class="main-content">
             <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
           
+
+
+
+<?php
+$userID = $_SESSION['user_id'];
+$dbPath = "StudentModule.db";
+include "phpfunctions/getusersposts.php";
+include "phpfunctions/getfriendsposts.php";
+// Get user's own posts
+$userPosts = getUserPosts($userID, $dbPath);
+
+// Get user's friends' posts
+$friendsPosts = getFriendsPosts($userID, $dbPath);
+
+// Combine user's and friends' posts
+$allPosts = array_merge($userPosts, $friendsPosts);
+
+// Sort posts by date (assuming 'post_date' is in datetime format)
+usort($allPosts, function ($a, $b) {
+    return strtotime($b['post_date']) - strtotime($a['post_date']);
+});
+
+// Display posts on try2.php
+foreach ($allPosts as $post) {
+    echo '<div class="post">';
+    echo '<p>' . htmlspecialchars($post['post_text']) . '</p>';
+    echo '<p>Posted by: ' . htmlspecialchars($post['username']) . '</p>';
+    echo '<p>Posted on: ' . htmlspecialchars($post['post_date']) . '</p>';
+    echo '</div>';
+}
+?>
+
 </div>
 </div>
-
-
-
-
-
 
 
 <?php include"makepostbtn.php" ?>
