@@ -29,7 +29,7 @@ $phone = $_SESSION['phone'];
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocialBook - Easy Tutorials YouTube Channel</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="css/style.css">
    
 </head>
@@ -49,7 +49,7 @@ $phone = $_SESSION['phone'];
         </div>
         <!----------------- middle content--------- -->
         <div class="main-content">
-            <h2>Your Posts, <?php echo $_SESSION['first_name']; ?></h2>
+            <h2>Your home screen, <?php echo $_SESSION['first_name']; ?></h2>
           
 
 
@@ -87,7 +87,10 @@ foreach ($allPosts as $post) {
 </div>
 
 
-<?php include"makepostbtn.php" ?>
+<div class="btm-navbar">
+  <a href="createpost.php" class="active">Make a new post</a>
+  
+</div>
 
      
 

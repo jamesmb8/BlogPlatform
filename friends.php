@@ -59,7 +59,7 @@ require_once"phpfunctions/getfriends.php";
             <form action="phpfunctions/searchresults.php" method="GET" id="searchform">
     <label for="search_username">Search for username:</label>
     <input type="text" id="search_username" name="search_username" required>
-    <button type="submit">Search</button>
+    <button type="submit">Add Friend</button>
 </div>
 </form>
 
