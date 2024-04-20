@@ -16,6 +16,9 @@ $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
 $email = $_SESSION['email'];
 
+
+require_once"phpfunctions/getfriends.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -42,25 +45,49 @@ $email = $_SESSION['email'];
 <div class="container">
         <div class="left-sidebar">
             <div class="imp-links">
-                 <a href="try2.php"><img src="images/User-image.png"> Home</a>
-                 <a href="friends.php"><img src="images/friends.png"> Friends</a>
-                 <a href="login.php"> Log Out</a>
+                 <a href="try2.php"><img src="images/home.png"> Home</a>
+                 <a href="account.php"><img src="images/User-image.png"> Account</a>
+
                 
             </div>
             
         </div>
         <!----------------- middle content--------- -->
         <div class="main-content">
-            <h2>Your Friends</h2>
-            <form action="phpfunctions/searchresults.php" method="GET">
+            <h2>Search for friends</h2>
+            <div id="tryandsearch"
+            <form action="phpfunctions/searchresults.php" method="GET" id="searchform">
     <label for="search_username">Search for username:</label>
     <input type="text" id="search_username" name="search_username" required>
     <button type="submit">Search</button>
-</form>
 </div>
+</form>
+
+  <h2>Your friends</h2>
+<div id="friends.list">
+<?php
+// Include get_friends.php to retrieve user's friends
 
 
+// Output friends' information for debugging
 
+// Check if there are any friends
+if (!empty($friends)) {
+    echo '<ul>';
+    foreach ($friends as $friend) {
+        echo '<li>';
+        echo 'Username: ' . htmlspecialchars($friend['member_username']) . '<br>';
+        echo 'First Name: ' . htmlspecialchars($friend['member_firstname']) . '<br>';
+        echo 'Last Name: ' . htmlspecialchars($friend['member_lastname']);
+        echo '</li>';
+    }
+    echo '</ul>';
+} else {
+    echo 'You have no friends.';
+}
+?>
+</div>
+</div>
 
 
     

@@ -51,7 +51,7 @@ $userPosts = getUserPosts($userID, $dbPath);
                 <div class="pd-row">
                     
                     <div>
-                       
+                        <h2>Your details</h2>
                         <ul>
                 <li>First Name: <?php echo $_SESSION['first_name']; ?></li>
                  <li>Last name: <?php echo $_SESSION['last_name']; ?></li>

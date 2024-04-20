@@ -184,32 +184,7 @@ body{
     font-size: 13px;
 }
 
-/*---------- dark mode button--------- */
-#dark-btn{
-    position:absolute;
-    top: 20px;
-    right: 20px;
-    background: #ccc;
-    width: 45px;
-    border-radius: 15px;
-    padding: 2px 3px;
-    display: flex;
-    cursor: pointer;
-    transition: padding-left 0.5s, background 0.5s;
-}
-#dark-btn span{
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border-radius: 50%;
-    display: inline-block;
 
-}
-#dark-btn.dark-btn-on{
-    padding-left: 23px;
-    background: #0a0a0a;
-    
-}
 
 
 /* -------- profile page --------- */
@@ -387,6 +362,7 @@ h2 {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 20px;
 }
 
 
@@ -457,4 +433,21 @@ h2 {
 .btm-navbar a.active {
   background-color: #1876f2;
   color: white;
+}
+
+            
+
+        #friends.list {
+
+list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        
+#tryandsearch {
+    padding: 10px;
 }

@@ -272,3 +272,7 @@ form textarea:valid ~ button:hover{
 .list li.active .radio::before{
   background: #4599FF;
 }
+
+#searchform {
+  padding: 25px;
+}

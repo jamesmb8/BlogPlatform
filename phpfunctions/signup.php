@@ -48,17 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Store user ID and other info in session
         $_SESSION['user_id'] = $userID;
         $_SESSION['username'] = $username;
-        $_SESSION['firstname'] = $firstname;
-        $_SESSION['lastname'] = $lastname;
+        $_SESSION['first_name'] = $firstname;
+        $_SESSION['last_name'] = $lastname;
         $_SESSION['email'] = $email;
         $_SESSION['phone'] = $phone;
 
         // Redirect to try2.php with user credentials in session
-        header("Location: try2.php");
+        header("Location: ../try2.php");
         exit;
     } else {
         // Redirect back to signup page with error message
-        header("Location: signup.html?error=Failed to register user");
+        header("Location: signup.html?error=Failed to register user") . $db->lastErrorMsg();
         exit;
     }
 
