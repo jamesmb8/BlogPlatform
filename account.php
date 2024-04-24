@@ -1,23 +1,31 @@
 <?php
 session_start();
+
+// Include the getUserPosts function
 include "phpfunctions/getusersposts.php";
 
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page if user is not logged in
     header('Location: login.html');
     exit;
 }
 
-
+// Retrieve user ID from session
 $userID = $_SESSION['user_id'];
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
+// Path to your SQLite database file
+$dbPath = "StudentModule.db";
 
-include "phpfunctions/db_connect.php";
-$userPosts = getUserPosts($userID, $mydb);
+// Call getUserPosts to retrieve user posts
+$userPosts = getUserPosts($userID, $dbPath);
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -33,6 +41,8 @@ $userPosts = getUserPosts($userID, $mydb);
 <body>
 
     <?php include 'navbar.php'; ?>
+
+    <!-- ----profile page --------- -->
 
     <div class="profile-container">
 
@@ -58,11 +68,13 @@ $userPosts = getUserPosts($userID, $mydb);
 
         </div>
 
+
+
     </div>
     <div class="container">
         <div class="left-sidebar">
             <div class="imp-links">
-                <a href="mainpage.php"><img src="images/User-image.png"> Home</a>
+                <a href="try2.php"><img src="images/User-image.png"> Home</a>
                 <a href="friends.php"><img src="images/friends.png"> Friends</a>
                 <a href="phpfunctions/logout.php"> Log Out</a>
 
@@ -72,26 +84,30 @@ $userPosts = getUserPosts($userID, $mydb);
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Your posts</h2>
-            <div class="post-container">
-<div class="post">
+
+
             <?php
-
+            // Display user posts
             if (!empty($userPosts)) {
-
+                echo '<div class="post-container">';
                 foreach ($userPosts as $post) {
+                    echo "<div class='post'>";
                     echo "<p>Posted by: " . $post['username'] . "</p>";
                     echo "<p>Posted on: " . date("F j, Y, g:i a", strtotime($post['post_date'])) . "</p>";
                     echo "<p>" . nl2br(htmlspecialchars($post['post_text'])) . "</p>";
-                   
+                    echo "</div>";
                 }
             } else {
                 echo "<p>No posts found.</p>";
             }
             ?>
 
-</div>
+
         </div>
-         </div>
+
+
+
+        <script src="script.js"></script>
 </body>
 
 </html>

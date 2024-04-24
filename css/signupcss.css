@@ -3,13 +3,18 @@ body {
   background: linear-gradient(#00C6FF, #0078FF);
   margin: 0;
   padding: 0;
-  color: #fff; 
+  color: #fff; /* Text color */
 }
 
 .container {
   max-width: 400px;
   margin: 100px auto;
-  background-color: #FFFF; 
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* White background color with transparency */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +36,7 @@ body {
 label {
   display: block;
   margin-bottom: 5px;
-  color: #333; 
+  color: #333; /* Label text color */
 }
 
 input[type="text"],
@@ -59,14 +64,14 @@ button {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #fff; 
-  color: #007bff; 
+  background-color: #fff; /* Button background color */
+  color: #007bff; /* Button text color */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0; /* Button hover background color */
 }
 
 header {
