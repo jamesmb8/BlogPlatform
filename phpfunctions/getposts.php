@@ -6,21 +6,11 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Specify the path to the database file relative to fetch_posts.php
-$dbPath = "../StudentModule.db"; // Path to SQLite database file
+include "db_connect.php";
 
-// Establish database connection
-$db = new SQLite3($dbPath);
-
-if (!$db) {
-    die("Failed to connect to SQLite database.");
-}
-
-// Get current user's ID from session
 $userID = $_SESSION['user_id'];
 
-// Query to fetch posts for current user and their friends
-$query = "
+$dbq = "
     SELECT post_text, post_date, member_username
     FROM Post
     INNER JOIN User ON Post.member_ID = User.ID
@@ -29,20 +19,13 @@ $query = "
     )
     ORDER BY post_date DESC
 ";
-$stmt = $db->prepare($query);
-$stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
-$result = $stmt->execute();
-
-// Array to store fetched posts
+$done = $db->prepare($dbq);
+$done->bindValue(':userID', $userID, SQLITE3_INTEGER);
+$done->execute();
 $posts = [];
-
-while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+while ($row = $done->fetchArray(SQLITE3_ASSOC)) {
     $posts[] = $row;
 }
-
-// Close database connection
 $db->close();
-
-// Return posts as JSON data
 echo json_encode($posts);
 ?>
