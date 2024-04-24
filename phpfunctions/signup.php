@@ -17,8 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-
-
     $dbq = "INSERT INTO User (member_username, member_firstname, member_lastname, member_email, member_password, member_phone)
               VALUES (:username, :firstname, :lastname, :email, :password, :phone)";
 

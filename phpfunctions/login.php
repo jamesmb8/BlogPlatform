@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['phone'] = $user['member_phone'];
         $_SESSION['password'] = $user['member_password'];
 
-        // Redirect to mainpage.php upon successful login
+
         header("Location: ../mainpage.php");
         exit();
     } else {
-        // Display error message if credentials are incorrect
+       
         echo "Invalid username or password. Please try again.";
     }
 }
