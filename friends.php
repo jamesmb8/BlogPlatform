@@ -37,10 +37,6 @@ require_once "phpfunctions/getfriends.php";
 
     <!-- ----profile page --------- -->
 
-    
-
-        
-
     </div>
 <div class="container">
         <div class="left-sidebar">
@@ -76,7 +72,7 @@ if (!empty($friends)) {
     }
     echo '</ul>';
 } else {
-    echo 'You have no friends.';
+    echo 'You have no friends yet.';
 }
 ?>
 </div>

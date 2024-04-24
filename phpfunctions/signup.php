@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
-    $password = $_POST['password']; 
+    $password = $_POST['password'];
     $phone = $_POST['phone'];
 
     if (empty($username) || empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($phone)) {
@@ -22,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Failed to connect to SQLite database.");
     }
 
-    $query = "INSERT INTO User (member_username, member_firstname, member_lastname, member_email, member_password, member_phone)
+    $dbq = "INSERT INTO User (member_username, member_firstname, member_lastname, member_email, member_password, member_phone)
               VALUES (:username, :firstname, :lastname, :email, :password, :phone)";
 
-    $stmt = $db->prepare($query);
+    $stmt = $db->prepare($dbq);
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
     $stmt->bindValue(':firstname', $firstname, SQLITE3_TEXT);
     $stmt->bindValue(':lastname', $lastname, SQLITE3_TEXT);
@@ -33,13 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindValue(':password', $password, SQLITE3_TEXT);
     $stmt->bindValue(':phone', $phone, SQLITE3_TEXT);
 
-    $result = $stmt->execute();
+    $done = $stmt->execute();
 
-    if ($result) {
-    
-        $userID = $db->lastInsertRowID(); 
+    if ($done) {
 
-
+        $userID = $db->lastInsertRowID();
         $_SESSION['user_id'] = $userID;
         $_SESSION['username'] = $username;
         $_SESSION['first_name'] = $firstname;
@@ -51,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../try2.php");
         exit;
     } else {
- 
+
         header("Location: signup.html?error=Failed to register user") . $db->lastErrorMsg();
         exit;
     }

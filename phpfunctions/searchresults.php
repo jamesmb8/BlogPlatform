@@ -7,10 +7,8 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 
-$dbPath = "../StudentModule.db"; 
-
-
-$db = new SQLite3($dbPath);
+$mydb = "../StudentModule.db";
+$db = new SQLite3($mydb);
 
 if (!$db) {
     die("Failed to connect to SQLite database.");
@@ -20,12 +18,12 @@ $userID = $_SESSION['user_id'];
 $searchUsername = $_GET['search_username'];
 
 
-$query = "SELECT ID FROM User WHERE member_username = :searchUsername";
-$stmt = $db->prepare($query);
+$dbq = "SELECT ID FROM User WHERE member_username = :searchUsername";
+$stmt = $db->prepare($dbq);
 $stmt->bindValue(':searchUsername', $searchUsername, SQLITE3_TEXT);
-$result = $stmt->execute();
+$done = $stmt->execute();
 
-if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+if ($row = $done->fetchArray(SQLITE3_ASSOC)) {
     $friendID = $row['ID'];
 
     $insertQuery = "INSERT INTO Friend (user1_id, user2_id) VALUES (:userID, :friendID), (:friendID, :userID)";

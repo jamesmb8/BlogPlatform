@@ -18,14 +18,11 @@ $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
 
-$dbPath = "StudentModule.db";
+$mydb = "StudentModule.db";
 
 
-$userPosts = getUserPosts($userID, $dbPath);
+$userPosts = getUserPosts($userID, $mydb);
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html>

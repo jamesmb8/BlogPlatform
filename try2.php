@@ -8,10 +8,6 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
     exit;
 }
 require_once "phpfunctions/db_connect.php";
-
-
-
-
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 $first_name = $_SESSION['first_name'];
@@ -20,8 +16,6 @@ $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
 ?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -48,20 +42,16 @@ $phone = $_SESSION['phone'];
         <!----------------- middle content--------- -->
         <div class="main-content">
             <h2>Your home screen, <?php echo $_SESSION['first_name']; ?></h2>
-
-
-
-
             <?php
             $userID = $_SESSION['user_id'];
-            $dbPath = "StudentModule.db";
+            $mydb = "StudentModule.db";
             include "phpfunctions/getusersposts.php";
             include "phpfunctions/getfriendsposts.php";
 
-            $userPosts = getUserPosts($userID, $dbPath);
+            $userPosts = getUserPosts($userID, $mydb);
 
 
-            $friendsPosts = getFriendsPosts($userID, $dbPath);
+            $friendsPosts = getFriendsPosts($userID, $mydb);
 
 
             $allPosts = array_merge($userPosts, $friendsPosts);
@@ -70,19 +60,18 @@ $phone = $_SESSION['phone'];
                 return strtotime($b['post_date']) - strtotime($a['post_date']);
             });
 
-      
+
             foreach ($allPosts as $post) {
                 echo '<div class="post">';
                 echo '<p>' . htmlspecialchars($post['post_text']) . '</p>';
-                echo '<p>Posted by: ' . htmlspecialchars($post['username']) . '</p>';
-                echo '<p>Posted on: ' . htmlspecialchars($post['post_date']) . '</p>';
+                echo '<p>Posted by: ' . ($post['username']) . '</p>';
+                echo '<p>Posted on: ' . ($post['post_date']) . '</p>';
                 echo '</div>';
             }
             ?>
 
         </div>
     </div>
-
 
     <div class="btm-navbar">
         <a href="createpost.php" class="active">Make a new post</a>

@@ -1,46 +1,35 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-function getFriendsPosts($userID, $dbPath)
+function getFriendsPosts($userID, $mydb)
 {
-
     $friendsPosts = [];
-
-
-    $db = new SQLite3($dbPath);
-
+    $db = new SQLite3($mydb);
     if (!$db) {
         die("Failed to connect to SQLite database.");
     }
-
-
-    $query = "
-        SELECT p.post_text, p.post_date, u.member_username
-        FROM Post p
-        JOIN User u ON p.member_ID = u.ID
-        WHERE p.member_ID IN (
+    $dbq = "
+        SELECT Post.post_text, Post.post_date, User.member_username
+        FROM Post 
+        JOIN User ON Post.member_ID = User.ID
+        WHERE Post.member_ID IN (
             SELECT user2_id
             FROM Friend
             WHERE user1_id = :userID
         )
-        ORDER BY p.post_date DESC
+        ORDER BY Post.post_date DESC
     ";
 
-    $stmt = $db->prepare($query);
+    $stmt = $db->prepare($dbq);
     $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
-    $result = $stmt->execute();
-
-
-    if ($result) {
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    $done = $stmt->execute();
+    if ($done) {
+        while ($row = $done->fetchArray(SQLITE3_ASSOC)) {
             $friendsPosts[] = [
                 'post_text' => $row['post_text'],
                 'post_date' => $row['post_date'],
                 'username' => $row['member_username']
-            ];
-        }
+        ];
+    }
     }
 
 

@@ -13,14 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
 
-    $query = "SELECT * FROM User WHERE member_username = :username AND member_password = :password";
-    $stmt = $db->prepare($query);
+    $dbq = "SELECT * FROM User WHERE member_username = :username AND member_password = :password";
+    $stmt = $db->prepare($dbq);
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
     $stmt->bindValue(':password', $password, SQLITE3_TEXT);
-    $result = $stmt->execute();
+    $done = $stmt->execute();
 
-
-    $user = $result->fetchArray(SQLITE3_ASSOC);
+    $user = $done->fetchArray(SQLITE3_ASSOC);
     if ($user) {
         $_SESSION['user_id'] = $user['ID'];
         $_SESSION['username'] = $user['member_username'];

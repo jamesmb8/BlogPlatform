@@ -8,19 +8,19 @@ if (!isset($_SESSION['user_id'])) {
 }
 include "db_connect.php";
 $userID = $_SESSION['user_id'];
-$query = "SELECT U.member_username, U.member_firstname, U.member_lastname
-          FROM Friend F
-          JOIN User U ON F.user2_id = U.ID
-          WHERE F.user1_id = :userID";
+$dbq = "SELECT User.member_username, User.member_firstname, User.member_lastname
+          FROM Friend 
+          JOIN User ON Friend.user2_id = User.ID
+          WHERE Friend.user1_id = :userID";
 
-$stmt = $db->prepare($query);
+$stmt = $db->prepare($dbq);
 $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
-$result = $stmt->execute();
-if (!$result) {
+$done = $stmt->execute();
+if (!$done) {
     die("Query execution failed: ");
 }
 $friends = [];
-while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+while ($row = $done->fetchArray(SQLITE3_ASSOC)) {
     $friends[] = $row;
 }
 $db->close();
