@@ -1,12 +1,9 @@
 <?php
-// Start session
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// Check if user is logged in
+session_start();
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-    // User is not logged in, redirect to login page
+
     header('Location: login.html');
     exit;
 }
@@ -14,7 +11,7 @@ require_once "phpfunctions/db_connect.php";
 
 
 
-// If logged in, retrieve user information from session variables
+
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 $first_name = $_SESSION['first_name'];
@@ -60,21 +57,20 @@ $phone = $_SESSION['phone'];
             $dbPath = "StudentModule.db";
             include "phpfunctions/getusersposts.php";
             include "phpfunctions/getfriendsposts.php";
-            // Get user's own posts
+
             $userPosts = getUserPosts($userID, $dbPath);
 
-            // Get user's friends' posts
+
             $friendsPosts = getFriendsPosts($userID, $dbPath);
 
-            // Combine user's and friends' posts
+
             $allPosts = array_merge($userPosts, $friendsPosts);
 
-            // Sort posts by date (assuming 'post_date' is in datetime format)
             usort($allPosts, function ($a, $b) {
                 return strtotime($b['post_date']) - strtotime($a['post_date']);
             });
 
-            // Display posts on try2.php
+      
             foreach ($allPosts as $post) {
                 echo '<div class="post">';
                 echo '<p>' . htmlspecialchars($post['post_text']) . '</p>';

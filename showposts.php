@@ -1,23 +1,22 @@
 <?php
 session_start();
 
-// Include the getUserPosts function
+
 include "phpfunctions/getusersposts.php";
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
-    // Redirect to login page if user is not logged in
+
     header('Location: login.html');
     exit;
 }
 
-// Retrieve user ID from session
+
 $userID = $_SESSION['user_id'];
 
-// Path to your SQLite database file
+
 $dbPath = "StudentModule.db";
 
-// Call getUserPosts to retrieve user posts
 $userPosts = getUserPosts($userID, $dbPath);
 ?>
 <!DOCTYPE html>
@@ -34,7 +33,7 @@ $userPosts = getUserPosts($userID, $dbPath);
     <h2>Your Posts:</h2>
     <div id="userPosts">
         <?php
-        // Display user posts
+
         if (!empty($userPosts)) {
             foreach ($userPosts as $post) {
                 echo "<div class='post'>";

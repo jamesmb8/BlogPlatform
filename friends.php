@@ -1,15 +1,15 @@
 <?php
-// Start session
+
 session_start();
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-    // User is not logged in, redirect to login page
+
     header('Location: login.html');
     exit;
 }
 
-// If logged in, retrieve user information from session variables
+
 $user_id = $_SESSION['ID'];
 $username = $_SESSION['username'];
 $first_name = $_SESSION['first_name'];
@@ -64,12 +64,7 @@ require_once "phpfunctions/getfriends.php";
   <h2>Your friends</h2>
 <div id="friends.list">
 <?php
-// Include get_friends.php to retrieve user's friends
 
-
-// Output friends' information for debugging
-
-// Check if there are any friends
 if (!empty($friends)) {
     echo '<ul>';
     foreach ($friends as $friend) {
