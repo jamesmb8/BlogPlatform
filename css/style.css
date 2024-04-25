@@ -27,10 +27,10 @@ body{
     transition: background 0.3s;
 }
 .btn {
-  border: none; /* Remove borders */
-  color: white; /* Add a text color */
-  padding: 14px 28px; /* Add some padding */
-  cursor: pointer; /* Add a pointer cursor on mouse-over */
+  border: none; 
+  color: white; 
+  padding: 14px 28px; 
+  cursor: pointer; 
 }
 .search-box{
     background: #efefef;
@@ -70,7 +70,7 @@ body{
     justify-content: space-between;
 }
 .left-sidebar{
-    /* background: #cbdffa; */
+    
     flex-basis: 25%;
     position: sticky;
     top: 70px;
@@ -79,7 +79,7 @@ body{
 }
 
 .main-content{
-    /* background: #cbdffa; */
+   
     flex-basis: 70%;
 }
 /* ----------left sidebar------ */
@@ -114,69 +114,8 @@ body{
     color: #626262;
     font-weight: 500;
 }
-/* ------------right sidebar------- */
 
 
-/* --------settings-menu----------- */
-.settings-menu{
-    width: 90%;
-    max-width: 350px;
-    max-height: 0px;
-    background: var(--bg-color);
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    position: absolute;
-    top: 108%;
-    right: 5%;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: max-height 0.3s;
-}
-.user-profile a{
-    font-size: 12px;
-    color: #1876f2;
-    text-decoration: none;
-}
-.settings-menu hr{
-    border: 0;
-    height: 1px;
-    background: #9a9a9a;
-    margin: 15px 0;
-}
-.settings-links{
-    display: flex;
-    align-items: center;
-    margin: 15px 0;
-}
-.settings-links .settings-icon{
-    width: 38px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-.settings-links a{
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    color: #626262;
-}
-.settings-menu-height{
-    max-height: 450px;
-}
-.settings-menu-inner{
-    padding: 20px;
-}
-
-.load-more-btn{
-    display: block;
-    margin: auto;
-    cursor: pointer;
-    padding: 5px 10px;
-    border: 1px solid #9a9a9a;
-    color: #626262;
-    background: transparent;
-    border-radius: 4px;
-}
 .footer{
     text-align: center;
     color: #9a9a9a;
@@ -369,16 +308,16 @@ h2 {
 .post-container {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Vertical gap between posts */
+            gap: 20px; /
         }
 
-        /* Style for each post */
+        
         .post {
             background-color: #fff;
-            border: 1px solid #ccc;
+            border: 1px solid #e1dede;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px #0000;
         }
 
         .post p {
@@ -387,9 +326,10 @@ h2 {
         }
 
         .post-title {
-            font-weight: bold;
+            
             font-size: 18px;
-            color: #333;
+            color: #282828;
+            font-weight: bold;
             margin-bottom: 10px;
         }
 
@@ -411,7 +351,7 @@ h2 {
   width: 100%;
 }
 
-/* Style the links inside the navigation bar */
+
 .btm-navbar a {
   float: center;
   display: block;
@@ -423,13 +363,13 @@ h2 {
   font-family: 'poppins', sans-serif;
 }
 
-/* Change the color of links on hover */
+
 .btm-navbar a:hover {
   background-color: #ddd;
   color: black;
 }
 
-/* Add a color to the active/current link */
+
 .btm-navbar a.active {
   background-color: #1876f2;
   color: white;
@@ -459,7 +399,7 @@ list-style-type: none;
   width: 100%;
 }
 
-/* Style the links inside the navigation bar */
+
 .btm-navbar a {
   float: center;
   display: block;
@@ -471,13 +411,13 @@ list-style-type: none;
   font-family: 'poppins', sans-serif;
 }
 
-/* Change the color of links on hover */
+
 .btm-navbar a:hover {
   background-color: #ddd;
   color: black;
 }
 
-/* Add a color to the active/current link */
+
 .btm-navbar a.active {
   background-color: #1876f2;
   color: white;

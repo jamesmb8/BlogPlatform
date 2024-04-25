@@ -8,18 +8,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3498db; /* Blue color for the navbar */
-    padding: 10px 20px; /* Adjust padding as needed */
-    color: #fff; /* Text color for navbar items */
+    background-color: #3498db; 
+    padding: 10px 20px; 
+    color: #fff; 
 }
 
 .logo img {
-    height: 40px; /* Adjust height of the logo image */
+    height: 40px; 
     width: auto;
 }
 
 .user img {
-    height: 40px; /* Adjust height of the user image */
+    height: 40px; 
     width: auto;
-    border-radius: 50%; /* Makes the user image round */
+    border-radius: 50%; 
 }
